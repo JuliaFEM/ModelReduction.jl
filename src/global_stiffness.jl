@@ -1,9 +1,10 @@
 # This file is a part of JuliaFEM.
 # License is MIT: see https://github.com/JuliaFEM/ModelReduction.jl/blob/master/LICENSE
 
-module ModelReduction
-
-include("global_stiffness.jl")
-include("global_mass.jl")
-
+function global_stiffness(k, N)
+    K = zeros(N,N)
+    for i=1:N-1
+      K[i:i+1,i:i+1] += k
+    end
+    return K
 end

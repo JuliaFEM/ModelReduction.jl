@@ -5,4 +5,6 @@ using ModelReduction
 using Base.Test
 
 @testset "ModelReduction.jl" begin
+    include("test_global_stiffness.jl")
+    include("test_global_mass.jl")
 end
