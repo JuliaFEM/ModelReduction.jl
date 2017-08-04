@@ -7,4 +7,5 @@ using Base.Test
 @testset "ModelReduction.jl" begin
     include("test_global_stiffness.jl")
     include("test_global_mass.jl")
+    include("test_guyan_reduction.jl")
 end
