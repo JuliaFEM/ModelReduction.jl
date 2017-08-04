@@ -1,6 +1,11 @@
 # This file is a part of JuliaFEM.
 # License is MIT: see https://github.com/JuliaFEM/ModelReduction.jl/blob/master/LICENSE
 
+"""
+    global_mass(m, N)
+
+Calculate global mass matrix of size N.
+"""
 function global_mass(m, N)
     M = zeros(N,N)
     for i=1:N-1
