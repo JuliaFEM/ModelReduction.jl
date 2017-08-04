@@ -81,6 +81,14 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "api.html#ModelReduction.guyan_reduction-Tuple{Any,Any,Any}",
+    "page": "API",
+    "title": "ModelReduction.guyan_reduction",
+    "category": "Method",
+    "text": "guyan_reduction(K, m, s)\n\nReduce the stiffness matrix by Guyan Reduction. K = original stiffness matrix, m = master nodes, s= slave nodes.\n\n\n\n"
+},
+
+{
     "location": "api.html#Index-1",
     "page": "API",
     "title": "Index",
