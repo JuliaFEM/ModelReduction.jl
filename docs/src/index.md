@@ -3,23 +3,16 @@
 ```@contents
 ```
 
-```@meta
-DocTestSetup = quote
-    using ModelReduction
-end
-```
+ModelReduction.jl is (write here)
 
-## Exported functions
+## Installing and testing package
 
-```@docs
-```
+( write here how to install and test package )
 
-## Internal functions
+## Usage example
 
-```@docs
-```
+( demonstrate here how to use package, simple example )
 
-## Index
+## Contributing
 
-```@index
-```
+( write here how to contribute to package )
