@@ -8,4 +8,5 @@ using Base.Test
     include("test_global_stiffness.jl")
     include("test_global_mass.jl")
     include("test_guyan_reduction.jl")
+    include("test_craig_bampton.jl")
 end
