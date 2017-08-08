@@ -3,7 +3,7 @@
 
 using ModelReduction
 
-@testset "Perform the Craig-Bampton method" begin
+@testset "Perform the Craig-Bampton method, n = 3" begin
     K =
     [2 -1 0 0;
     -1 2 -1 0;
