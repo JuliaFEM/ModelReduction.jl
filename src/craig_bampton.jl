@@ -15,21 +15,27 @@ function craig_bampton(K, M, r, l, n)
     Klr = K[l,r]; Kll = K[l,l]
     Mrr = M[r,r]; Mrl = M[r,l]
     Mlr = M[l,r]; Mll = M[l,l]
-    I_ = eye(Krr)
-    b = -Kll^-1 * Klr
-    B = vcat(I_, b)
     w2 = eigvals(Kll,Mll)
     X1 = eigvecs(Kll,Mll)
     X1[abs.(X1) .< eps_] = 0
     X = X1[:,1:n]
-    Mbb = Mrr + Mrl*b + b'*Mlr + b'*Mll*b; Mbb[abs.(Mbb) .< eps_] = 0
-    Mbm = (Mrl + b'*Mll)*X; Mbm[abs.(Mbm) .< eps_] = 0
-    Mmb = X'*(Mlr + Mll*b); Mmb[abs.(Mmb) .< eps_] = 0
-    Mmm = X'*Mll*X; Mmm[abs.(Mmm) .< eps_] = 0
-    Kbb = Krr + Krl*b; Kbb[abs.(Kbb) .< eps_] = 0
-    Kbm = (Krl + b'*Kll)*X; Kbm[abs.(Kbm) .< eps_] = 0
-    Kmb = X'*(Klr + Kll*b); Kmb[abs.(Kmb) .< eps_] = 0
-    Kmm = X'*Kll*X; Kmm[abs.(Kmm) .< eps_] = 0
+    V = X1'*Kll*X1
+    Kmm = X'*Kll*X
+    Kmm[abs.(Kmm) .< eps_] = 0
+    Kbb = Krr + Krl*(-X1*inv(V)*X1'*Klr)
+    Kbb[abs.(Kbb) .< eps_] = 0
+    Kbm = (Krl + (-X*inv(Kmm)*X'*Klr)'*Kll)*X
+    Kbm[abs.(Kbm) .< eps_] = 0
+    Kmb = X'*(Klr + Kll*(-X*inv(Kmm)*X'*Klr))
+    Kmb[abs.(Kmb) .< eps_] = 0
+    Mbb = Mrr + Mrl*(-X1*inv(V)*X1'*Klr) + (-X1*inv(V)*X1'*Klr)'*Mlr + (-X1*inv(V)*X1'*Klr)'*Mll*(-X1*inv(V)*X1'*Klr)
+    Mbb[abs.(Mbb) .< eps_] = 0
+    Mbm = (Mrl + (-X*inv(Kmm)*X'*Klr)'*Mll)*X
+    Mbm[abs.(Mbm) .< eps_] = 0
+    Mmb = X'*(Mlr + Mll*(-X*inv(Kmm)*X'*Klr))
+    Mmb[abs.(Mmb) .< eps_] = 0
+    Mmm = X'*Mll*X
+    Mmm[abs.(Mmm) .< eps_] = 0
     Mred = [Mbb Mbm; Mmb Mmm]
     Kred = [Kbb Kbm; Kmb Kmm]
     return Mred, Kred
