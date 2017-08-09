@@ -89,6 +89,22 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "api.html#ModelReduction.global_mass-Tuple{Any,Any}",
+    "page": "API",
+    "title": "ModelReduction.global_mass",
+    "category": "Method",
+    "text": "global_mass(m, N)\n\nCalculate global mass matrix of size N.\n\n\n\n"
+},
+
+{
+    "location": "api.html#ModelReduction.global_stiffness-Tuple{Any,Any}",
+    "page": "API",
+    "title": "ModelReduction.global_stiffness",
+    "category": "Method",
+    "text": "global_stiffness(k, N)\n\nCalculate global stiffness matrix of size N.\n\n\n\n"
+},
+
+{
     "location": "api.html#ModelReduction.guyan_reduction-Tuple{Any,Any,Any}",
     "page": "API",
     "title": "ModelReduction.guyan_reduction",
