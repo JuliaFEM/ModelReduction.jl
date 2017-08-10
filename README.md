@@ -8,7 +8,7 @@ Reducing the sizes of stiffness and mass matrices of the model will greatly decr
 
 ModelReduction.jl is a part of JuliaFEM. All codes are MIT licensed.
 
-## Installing and testing package
+## Installing and testing the package
 
 Download and unzip the packge files into your Julia folder and then install the package the same way other Julia packages are installed.
 
