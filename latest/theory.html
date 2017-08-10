@@ -1,2 +1,94 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Theory · ModelReduction</title><link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" data-main="assets/documenter.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link href="assets/documenter.css" rel="stylesheet" type="text/css"/></head><body><nav class="toc"><h1>ModelReduction</h1><select id="version-selector" onChange="window.location.href=this.value" style="visibility: hidden"></select><form class="search" action="search.html"><input id="search-query" name="q" type="text" placeholder="Search docs"/></form><ul><li><a class="toctext" href="index.html">Introduction</a></li><li class="current"><a class="toctext" href="theory.html">Theory</a><ul class="internal"><li class="toplevel"><a class="toctext" href="#References-1">References</a></li></ul></li><li><a class="toctext" href="api.html">API</a></li></ul></nav><article id="docs"><header><nav><ul><li><a href="theory.html">Theory</a></li></ul><a class="edit-page" href="https://github.com/JuliaFEM/ModelReduction.jl/tree/65fdaf3ef4aa8ce236bf0e3cdc981a77a1c21a44/docs/src/theory.md"><span class="fa"></span> Edit on GitHub</a></nav><hr/><div id="topbar"><span>Theory</span><a class="fa fa-bars" href="#"></a></div></header><h1><a class="nav-anchor" id="Theory-1" href="#Theory-1">Theory</a></h1><p>( write here what is the theory behing package )</p><h1><a class="nav-anchor" id="References-1" href="#References-1">References</a></h1><p>( add here the list of references, if any, I leave the list below as example )</p><ul><li><p>Wikipedia contributors. &quot;Mortar methods.&quot; Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia.</p></li><li><p>Maday, Yvon, Cathy Mavriplis, and Anthony Patera. &quot;Nonconforming mortar element methods: Application to spectral discretizations.&quot; (1988).</p></li><li><p>Yang, Bin, Tod A. Laursen, and Xiaonong Meng. &quot;Two dimensional mortar contact methods for large deformation frictional sliding.&quot; International journal for numerical methods in engineering 62.9 (2005): 1183-1225.</p></li><li><p>Yang, Bin, and Tod A. Laursen. &quot;A contact searching algorithm including bounding volume trees applied to finite sliding mortar formulations.&quot; Computational Mechanics 41.2 (2008): 189-205.</p></li><li><p>Wohlmuth, Barbara I. &quot;A mortar finite element method using dual spaces for the Lagrange multiplier.&quot; SIAM journal on numerical analysis 38.3 (2000): 989-1012.</p></li></ul><footer><hr/><a class="previous" href="index.html"><span class="direction">Previous</span><span class="title">Introduction</span></a><a class="next" href="api.html"><span class="direction">Next</span><span class="title">API</span></a></footer></article></body></html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Theory · ModelReduction</title><link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" data-main="assets/documenter.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link href="assets/documenter.css" rel="stylesheet" type="text/css"/></head><body><nav class="toc"><h1>ModelReduction</h1><select id="version-selector" onChange="window.location.href=this.value" style="visibility: hidden"></select><form class="search" action="search.html"><input id="search-query" name="q" type="text" placeholder="Search docs"/></form><ul><li><a class="toctext" href="index.html">Introduction</a></li><li class="current"><a class="toctext" href="theory.html">Theory</a><ul class="internal"><li class="toplevel"><a class="toctext" href="#References-1">References</a></li></ul></li><li><a class="toctext" href="api.html">API</a></li></ul></nav><article id="docs"><header><nav><ul><li><a href="theory.html">Theory</a></li></ul><a class="edit-page" href="https://github.com/JuliaFEM/ModelReduction.jl/tree/99f7d391b1a0be2ab39b5703ee9dc7b333a69485/docs/src/theory.md"><span class="fa"></span> Edit on GitHub</a></nav><hr/><div id="topbar"><span>Theory</span><a class="fa fa-bars" href="#"></a></div></header><h1><a class="nav-anchor" id="Theory-1" href="#Theory-1">Theory</a></h1><p>The Craig-Bampton method is a dynamic reduction technique that reduces the mass and stiffness matrices of the model by expressing the boundary modes in physical coordinates and the elastic modes in modal coordinates.</p><p>The equation of motion is:</p><div>\[\begin{equation}
+\boldsymbol{M}\ddot{\boldsymbol{u}}+\boldsymbol{K}\boldsymbol{u}=\boldsymbol{f}
+\end{equation}\]</div><p>The matrices are partitioned into boundary nodes R and the independent elastic nodes L:</p><div>\[\begin{equation}
+\boldsymbol{u}=\begin{bmatrix}\boldsymbol{u}_{\mathrm{R}}\\
+\boldsymbol{u}_{\mathrm{L}}
+\end{bmatrix}
+\end{equation}\]</div><p>Equation (1) becomes:</p><div>\[\begin{equation}
+\begin{bmatrix}\boldsymbol{M}_{\mathrm{RR}} &amp; \boldsymbol{M}_{\mathrm{\mathrm{R}L}}\\
+\boldsymbol{M}_{\mathrm{RR}} &amp; \boldsymbol{M}_{\mathrm{LL}}
+\end{bmatrix}\begin{bmatrix}\ddot{\boldsymbol{u}}_{\mathrm{R}}\\
+\ddot{\boldsymbol{u}}_{\mathrm{L}}
+\end{bmatrix}+\begin{bmatrix}\boldsymbol{K}_{\mathrm{RR}} &amp; \boldsymbol{K}_{\mathrm{RL}}\\
+\boldsymbol{K}_{\mathrm{LR}} &amp; \boldsymbol{K}_{\mathrm{LL}}
+\end{bmatrix}\begin{bmatrix}\boldsymbol{u}_{\mathrm{R}}\\
+\boldsymbol{u}_{\mathrm{L}}
+\end{bmatrix}=\boldsymbol{f}
+\end{equation}\]</div><p>The degrees of freedom are are transformed to hybrid coordinates</p><div>\[\begin{equation}
+\begin{bmatrix}\boldsymbol{u}_{\mathrm{R}}\\
+\boldsymbol{u}_{\mathrm{L}}
+\end{bmatrix}=\begin{bmatrix}\boldsymbol{I} &amp; \boldsymbol{0}\\
+\boldsymbol{X}_{\mathrm{R}} &amp; \boldsymbol{X}_{\mathrm{L}}
+\end{bmatrix}\begin{bmatrix}\boldsymbol{u}_{\mathrm{R}}\\
+\boldsymbol{q}_{\mathrm{m}}
+\end{bmatrix}
+\end{equation}\]</div><p>Equation (1) can be rewritten as</p><div>\[\begin{equation}
+\begin{bmatrix}\boldsymbol{M}_{\mathrm{RR}} &amp; \boldsymbol{M}_{\mathrm{\mathrm{R}L}}\\
+\boldsymbol{M}_{\mathrm{RR}} &amp; \boldsymbol{M}_{\mathrm{LL}}
+\end{bmatrix}\begin{bmatrix}\boldsymbol{I} &amp; \boldsymbol{0}\\
+\boldsymbol{X}_{\mathrm{R}} &amp; \boldsymbol{X}_{\mathrm{L}}
+\end{bmatrix}\begin{bmatrix}\ddot{\boldsymbol{u}}_{\mathrm{R}}\\
+\ddot{\boldsymbol{q}}_{\mathrm{m}}
+\end{bmatrix}+\begin{bmatrix}\boldsymbol{K}_{\mathrm{RR}} &amp; \boldsymbol{K}_{\mathrm{RL}}\\
+\boldsymbol{K}_{\mathrm{LR}} &amp; \boldsymbol{K}_{\mathrm{LL}}
+\end{bmatrix}\begin{bmatrix}\boldsymbol{I} &amp; \boldsymbol{0}\\
+\boldsymbol{X}_{\mathrm{R}} &amp; \boldsymbol{X}_{\mathrm{L}}
+\end{bmatrix}\begin{bmatrix}\boldsymbol{u}_{\mathrm{R}}\\
+\boldsymbol{q}_{\mathrm{m}}
+\end{bmatrix}=\begin{bmatrix}\boldsymbol{f}_{\mathrm{R}}\\
+\boldsymbol{0}
+\end{bmatrix}
+\end{equation}\]</div><p>Equation (1) reduces to</p><div>\[\begin{equation}
+\boldsymbol{K}_{\mathrm{LR}}\boldsymbol{K}_{\mathrm{LR}}\boldsymbol{u}_{\mathrm{R}}+\boldsymbol{K}_{\mathrm{LL}}\boldsymbol{u}_{\mathrm{L}}
+\end{equation}\]</div><p>The internal degrees of freedom can be expressed as</p><div>\[\begin{equation}
+\boldsymbol{u}_{\mathrm{L}}=-\boldsymbol{K}_{\mathrm{LL}}^{-1}\boldsymbol{K}_{\mathrm{LR}}\boldsymbol{u}_{\mathrm{R}}=\boldsymbol{X}_{\mathrm{R}}\boldsymbol{u}_{\mathrm{R}}
+\end{equation}\]</div><p>where</p><div>\[\begin{equation}
+\boldsymbol{X}_{\mathrm{R}}=-\boldsymbol{K}_{\mathrm{LL}}^{-1}\boldsymbol{K}_{\mathrm{LR}}
+\end{equation}\]</div><p>To determine \mathit{\boldsymbol{X}}_{\mathrm{L}} the retained degrees of freedom are fixed. The equation of motion reduces to</p><div>\[\begin{equation}
+\boldsymbol{M}_{\mathrm{LL}}\ddot{\boldsymbol{u}}_{\mathrm{L}}+\boldsymbol{K}_{\mathrm{LL}}\boldsymbol{u}_{\mathrm{L}}=0
+\end{equation}\]</div><p>By assuming harmonic response and substituting the coordinate transformation (4)</p><div>\[\begin{equation}
+(-\omega^{2}\boldsymbol{M}_{\mathrm{LL}}+\boldsymbol{K}_{\mathrm{LL}})\boldsymbol{X}_{\mathrm{L}}\boldsymbol{q}_{\mathrm{m}}e^{i\omega t}=0
+\end{equation}\]</div><p>The eigenvectors can be normalized:</p><div>\[\begin{equation}
+\boldsymbol{X}_{\mathrm{L}}^{\mathrm{T}}\boldsymbol{M}_{\mathrm{LL}}\boldsymbol{X}_{\mathrm{L}}=\boldsymbol{I}
+\end{equation}\]</div><div>\[\begin{equation}
+\boldsymbol{X}_{\mathrm{L}}^{\mathrm{T}}\boldsymbol{K}_{\mathrm{LL}}\boldsymbol{X}_{\mathrm{L}}=\boldsymbol{\Lambda}
+\end{equation}\]</div><p>Since <span>$\boldsymbol{X}$$_{\mathrm{R}}$</span> in (9) contains <span>$\boldsymbol{K}$$_{\mathrm{LL}}^{-1}$</span>, an inverse of <span>$\boldsymbol{K}$$_{\mathrm{LL}}$</span>, determining it will require lots of computing resources. This can be avoided by determining the <span>$\boldsymbol{K}$$_{\mathrm{LL}}$</span> inverse as follows.</p><div>\[\begin{equation}
+-\boldsymbol{K}_{\mathrm{LL}}^{-1}=\boldsymbol{X}_{\mathrm{L}}\boldsymbol{\Lambda}^{-1}\boldsymbol{X}_{\mathrm{L}}^{\mathrm{T}}
+\end{equation}\]</div><p>In order to get the dynamic equations of the system, equation (6) is multiplied with the coordination transformation matrix.</p><div>\[\begin{multline}
+\begin{bmatrix}\boldsymbol{I} &amp; \boldsymbol{X}_{\mathrm{R}}^{\mathrm{T}}\\
+\boldsymbol{0} &amp; \boldsymbol{X}_{\mathrm{L}}^{\mathrm{T}}
+\end{bmatrix}\begin{bmatrix}\boldsymbol{M}_{\mathrm{RR}} &amp; \boldsymbol{M}_{\mathrm{\mathrm{R}L}}\\
+\boldsymbol{M}_{\mathrm{LR}} &amp; \boldsymbol{M}_{\mathrm{LL}}
+\end{bmatrix}\begin{bmatrix}\boldsymbol{I} &amp; \boldsymbol{0}\\
+\boldsymbol{X}_{\mathrm{R}} &amp; \boldsymbol{X}_{\mathrm{L}}
+\end{bmatrix}\begin{bmatrix}\ddot{\boldsymbol{u}}_{\mathrm{R}}\\
+\ddot{\boldsymbol{q}}_{\mathrm{m}}
+\end{bmatrix}\\
++\begin{bmatrix}\boldsymbol{I} &amp; \boldsymbol{X}_{\mathrm{R}}^{\mathrm{T}}\\
+\boldsymbol{0} &amp; \boldsymbol{X}_{\mathrm{L}}^{\mathrm{T}}
+\end{bmatrix}\begin{bmatrix}\boldsymbol{K}_{\mathrm{RR}} &amp; \boldsymbol{K}_{\mathrm{RL}}\\
+\boldsymbol{K}_{\mathrm{LR}} &amp; \boldsymbol{K}_{\mathrm{LL}}
+\end{bmatrix}\begin{bmatrix}\boldsymbol{I} &amp; \boldsymbol{0}\\
+\boldsymbol{X}_{\mathrm{R}} &amp; \boldsymbol{X}_{\mathrm{L}}
+\end{bmatrix}\begin{bmatrix}\mathbf{\mathit{\boldsymbol{u}}}_{\mathrm{R}}\\
+\boldsymbol{q}_{\mathrm{m}}
+\end{bmatrix}=\begin{bmatrix}\boldsymbol{I} &amp; \boldsymbol{X}_{\mathrm{R}}^{\mathrm{T}}\\
+\boldsymbol{0} &amp; \boldsymbol{X}_{\mathrm{L}}^{\mathrm{T}}
+\end{bmatrix}\begin{bmatrix}\boldsymbol{f}_{\mathrm{R}}\\
+\boldsymbol{0}
+\end{bmatrix}
+\end{multline}\]</div><p>By simplifying the equation of motion (1) becomes</p><div>\[\begin{multline}
+\begin{bmatrix}\boldsymbol{M}_{\mathrm{RR}}+\boldsymbol{X}_{\mathrm{R}}^{\mathrm{T}}\boldsymbol{M}_{\mathrm{LR}}+\boldsymbol{X}_{\mathrm{R}}^{\mathrm{T}}\boldsymbol{M}_{\mathrm{LL}}\boldsymbol{X}_{\mathrm{R}} &amp; \boldsymbol{M}_{\mathrm{\mathrm{R}L}}\boldsymbol{X}_{\mathrm{L}}+\boldsymbol{X}_{\mathrm{R}}^{\mathrm{T}}\boldsymbol{M}_{\mathrm{LL}}\boldsymbol{X}_{\mathrm{L}}\\
+\boldsymbol{X}_{\mathrm{L}}^{\mathrm{T}}\boldsymbol{M}_{\mathrm{LR}}+\boldsymbol{X}_{\mathrm{L}}^{\mathrm{T}}\boldsymbol{M}_{\mathrm{LL}}\boldsymbol{X}_{\mathrm{R}} &amp; \boldsymbol{I}
+\end{bmatrix}\begin{bmatrix}\ddot{\boldsymbol{u}}_{\mathrm{R}}\\
+\ddot{\boldsymbol{q}}_{\mathrm{m}}
+\end{bmatrix}\\
++\begin{bmatrix}\boldsymbol{K}_{\mathrm{RR}}+\boldsymbol{K}_{\mathrm{RL}}\boldsymbol{X}_{\mathrm{R}} &amp; \boldsymbol{0}\\
+\boldsymbol{0} &amp; \boldsymbol{\Lambda}
+\end{bmatrix}\begin{bmatrix}\boldsymbol{u}_{\mathrm{R}}\\
+\boldsymbol{q}_{\mathrm{m}}
+\end{bmatrix}=\begin{bmatrix}\boldsymbol{f}_{\mathrm{R}}\\
+\boldsymbol{0}
+\end{bmatrix}
+\end{multline}\]</div><h1><a class="nav-anchor" id="References-1" href="#References-1">References</a></h1><ul><li><p>Qu, Zu-Qing. Model Order Reduction Techniques (2004). p. 322 - 329.</p></li><li><p>Young, John T. Prime on the Craig-Bampton Method (2000). p. 5 - 17.</p></li></ul><footer><hr/><a class="previous" href="index.html"><span class="direction">Previous</span><span class="title">Introduction</span></a><a class="next" href="api.html"><span class="direction">Next</span><span class="title">API</span></a></footer></article></body></html>
