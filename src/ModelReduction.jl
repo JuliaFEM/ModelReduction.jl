@@ -6,4 +6,5 @@ include("global_stiffness.jl")
 include("global_mass.jl")
 include("guyan_reduction.jl")
 include("craig_bampton.jl")
+include("sort_nodes.jl")
 end
