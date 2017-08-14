@@ -113,6 +113,14 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "api.html#ModelReduction.sort_nodes-Tuple{Any,Any}",
+    "page": "API",
+    "title": "ModelReduction.sort_nodes",
+    "category": "Method",
+    "text": "sort_nodes(nodes, node_sets)\n\nCreate the r and l arrays for the retained and internal nodes. nodes = all nodes of the model node_sets = node sets containing the nodes that are to be retained\n\n\n\n"
+},
+
+{
     "location": "api.html#Index-1",
     "page": "API",
     "title": "Index",
