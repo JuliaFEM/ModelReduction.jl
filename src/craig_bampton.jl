@@ -16,8 +16,9 @@ function craig_bampton(K, M, r, l, n)
     Mrr = M[r,r]; Mrl = M[r,l]
     Mlr = M[l,r]; Mll = M[l,l]
     if issparse(K) && issparse(M)
-        w2 = eigs(Kll,Mll)[1]
-        X1 = eigs(Kll,Mll)[2]
+        tmp = eigs(Kll, Mll)
+        w2 = tmp[1]
+        X1 = tmp[2]
     else
         w2 = eigvals(Kll,Mll)
         X1 = eigvecs(Kll,Mll)
