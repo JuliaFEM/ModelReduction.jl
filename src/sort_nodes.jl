@@ -15,6 +15,8 @@ function sort_nodes(nodes, node_sets)
     for k in keys(nodes)
       if k in node_sets[:SUPPORT]
         push!(r, k)
+      elseif k in node_sets[:TIP]
+        push!(r, k)
       else
         push!(l, k)
       end

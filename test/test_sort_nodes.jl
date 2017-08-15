@@ -6,10 +6,10 @@ using ModelReduction
 @testset "Sort nodes to retained and internal" begin
 
     nodes = Dict(1 => [0.0, 0.0, 0.0], 2 => [1.0, 0.0, 0.0], 3 => [0.0, 1.0, 0.0], 4 => [1.0, 0.0, 0.0])
-    node_sets = Dict(:SUPPORT => Set([1, 2, 3]))
+    node_sets = Dict(:SUPPORT => Set([1, 2]), :TIP => Set([4]))
 
-    r_expected = [2, 3, 1]
-    l_expected = [4]
+    r_expected = [4, 2, 1]
+    l_expected = [3]
 
     r, l = ModelReduction.sort_nodes(nodes, node_sets)
     @test r == r_expected
