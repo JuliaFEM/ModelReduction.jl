@@ -10,15 +10,13 @@ r = retained DOF:s, l = internal DOF:s, n = the number of modes to keep.
 
 """
 function craig_bampton(K, M, r, l, n)
-    eps_ = 0.000001
+    eps_ = 0.0000001
     Krr = K[r,r]; Krl = K[r,l]
     Klr = K[l,r]; Kll = K[l,l]
     Mrr = M[r,r]; Mrl = M[r,l]
     Mlr = M[l,r]; Mll = M[l,l]
     if issparse(K) && issparse(M)
-        tmp = eigs(Kll, Mll)
-        w2 = tmp[1]
-        X1 = tmp[2]
+        w2, X1 = eigs(Kll, Mll)
     else
         w2 = eigvals(Kll,Mll)
         X1 = eigvecs(Kll,Mll)
