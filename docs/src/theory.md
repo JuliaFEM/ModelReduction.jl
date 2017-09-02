@@ -98,7 +98,7 @@ where
 \end{equation}
 ```
 
-To determine \mathit{\boldsymbol{X}}_{\mathrm{L}} the retained degrees of freedom are fixed. The equation of motion reduces to
+To determine $\mathit{\boldsymbol{X}}_{\mathrm{L}}$ the retained degrees of freedom are fixed. The equation of motion reduces to
 
 ```math
 \begin{equation}
