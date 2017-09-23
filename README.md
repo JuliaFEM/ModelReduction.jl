@@ -10,7 +10,7 @@ ModelReduction.jl is a part of JuliaFEM. All codes are MIT licensed.
 
 ## Installing and testing the package
 
-Download and unzip the packge files into your Julia folder and then install the package the same way other Julia packages are installed.
+Install the package the same way other Julia packages are installed.
 
 ```julia
 julia> Pkg.add("ModelReduction")
