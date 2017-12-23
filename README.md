@@ -32,28 +32,28 @@ This example demonstrates how to use the Craig-Bampton method function.
 Problem setup:
 
 ```julia
-K =
+julia> K =
 [2 -1 0 0;
 -1 2 -1 0;
  0 -1 2 -1;
  0 0 -1 1]
 
-M =
+julia> M =
 [2 0 0 0;
  0 2 0 0;
  0 0 2 0;
  0 0 0 1]
 
-r = [4]
-l = [1, 2, 3]
-n = 1
+julia> r = [4]
+julia> l = [1, 2, 3]
+julia> n = 1
 
 ```
 K = original stiffness matrix, M = original mass matrix, r = retained DOF:s, l = internal DOF:s, n = the number of the internal modes to keep.
 Calculate the reduced mass and stiffness matrices Mred and Kred.
 
 ```julia
-Mred, Kred = ModelReduction.craig_bampton(K, M, r, l, n)
+julia> Mred, Kred = ModelReduction.craig_bampton(K, M, r, l, n)
 ([2.75 -1.20711; -1.20711 1.0], [0.25 0.0; 0.0 0.292893])
 
 ```
