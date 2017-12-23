@@ -53,11 +53,8 @@ K = original stiffness matrix, M = original mass matrix, r = retained DOF:s, l =
 Calculate the reduced mass and stiffness matrices Mred and Kred.
 
 ```julia
-craig_bampton(K, M, r, l, n)
-
-# output
-
-Mred, Kred = ([2.75 -1.20711; -1.20711 1.0], [0.25 0.0; 0.0 0.292893])
+Mred, Kred = ModelReduction.craig_bampton(K, M, r, l, n)
+([2.75 -1.20711; -1.20711 1.0], [0.25 0.0; 0.0 0.292893])
 
 ```
 
