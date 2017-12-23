@@ -32,17 +32,15 @@ This example demonstrates how to use the Craig-Bampton method function.
 Problem setup:
 
 ```julia
-julia> K =
-[2 -1 0 0;
--1 2 -1 0;
- 0 -1 2 -1;
- 0 0 -1 1]
+julia> K = [2 -1  0  0;
+           -1  2 -1  0;
+            0 -1  2 -1;
+            0  0 -1  1]
 
-julia> M =
-[2 0 0 0;
- 0 2 0 0;
- 0 0 2 0;
- 0 0 0 1]
+julia> M = [2 0 0 0;
+            0 2 0 0;
+            0 0 2 0;
+            0 0 0 1]
 
 julia> r = [4]
 julia> l = [1, 2, 3]
