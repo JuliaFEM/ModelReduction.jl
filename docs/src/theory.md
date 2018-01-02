@@ -58,7 +58,7 @@ Equation (1) can be rewritten as
 ```math
 \begin{equation}
 \begin{bmatrix}\boldsymbol{M}_{\mathrm{RR}} & \boldsymbol{M}_{\mathrm{\mathrm{R}L}}\\
-\boldsymbol{M}_{\mathrm{RR}} & \boldsymbol{M}_{\mathrm{LL}}
+\boldsymbol{M}_{\mathrm{LR}} & \boldsymbol{M}_{\mathrm{LL}}
 \end{bmatrix}\begin{bmatrix}\boldsymbol{I} & \boldsymbol{0}\\
 \boldsymbol{X}_{\mathrm{R}} & \boldsymbol{X}_{\mathrm{L}}
 \end{bmatrix}\begin{bmatrix}\ddot{\boldsymbol{u}}_{\mathrm{R}}\\
