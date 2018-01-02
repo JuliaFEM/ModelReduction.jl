@@ -190,4 +190,4 @@ By simplifying the equation of motion (1) becomes
 # References
 
 - Qu, Zu-Qing. Model Order Reduction Techniques (2004). p. 322 - 329.
-- Young, John T. Prime on the Craig-Bampton Method (2000). p. 5 - 17.
+- Haile, William B. Prime on the Craig-Bampton Method (2000). p. 5 - 17.
