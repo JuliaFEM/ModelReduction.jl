@@ -61,7 +61,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Theory",
     "title": "References",
     "category": "section",
-    "text": "Qu, Zu-Qing. Model Order Reduction Techniques (2004). p. 322 - 329.\nYoung, John T. Prime on the Craig-Bampton Method (2000). p. 5 - 17."
+    "text": "Qu, Zu-Qing. Model Order Reduction Techniques (2004). p. 322 - 329.\nHaile, William B. Prime on the Craig-Bampton Method (2000). p. 5 - 17."
 },
 
 {
