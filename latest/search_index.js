@@ -84,7 +84,7 @@ var documenterSearchIndex = {"docs": [
     "location": "api.html#ModelReduction.craig_bampton-NTuple{5,Any}",
     "page": "API",
     "title": "ModelReduction.craig_bampton",
-    "category": "Method",
+    "category": "method",
     "text": "craig_bampton(K, M, r, l, n)\n\nReduce the stiffness and mass matrices with the Craig-Bampton method. K = original stiffness matrix, M = original mass matrix, r = retained DOF:s, l = internal DOF:s, n = the number of modes to keep.\n\n\n\n"
 },
 
@@ -92,7 +92,7 @@ var documenterSearchIndex = {"docs": [
     "location": "api.html#ModelReduction.global_mass-Tuple{Any,Any}",
     "page": "API",
     "title": "ModelReduction.global_mass",
-    "category": "Method",
+    "category": "method",
     "text": "global_mass(m, N)\n\nCalculate global mass matrix of size N.\n\n\n\n"
 },
 
@@ -100,7 +100,7 @@ var documenterSearchIndex = {"docs": [
     "location": "api.html#ModelReduction.global_stiffness-Tuple{Any,Any}",
     "page": "API",
     "title": "ModelReduction.global_stiffness",
-    "category": "Method",
+    "category": "method",
     "text": "global_stiffness(k, N)\n\nCalculate global stiffness matrix of size N.\n\n\n\n"
 },
 
@@ -108,7 +108,7 @@ var documenterSearchIndex = {"docs": [
     "location": "api.html#ModelReduction.guyan_reduction-Tuple{Any,Any,Any}",
     "page": "API",
     "title": "ModelReduction.guyan_reduction",
-    "category": "Method",
+    "category": "method",
     "text": "guyan_reduction(K, m, s)\n\nReduce the stiffness matrix by Guyan Reduction. K = original stiffness matrix, m = master nodes, s= slave nodes.\n\n\n\n"
 },
 
@@ -116,7 +116,7 @@ var documenterSearchIndex = {"docs": [
     "location": "api.html#ModelReduction.sort_nodes-Tuple{Any,Any}",
     "page": "API",
     "title": "ModelReduction.sort_nodes",
-    "category": "Method",
+    "category": "method",
     "text": "sort_nodes(nodes, node_sets)\n\nCreate the r and l arrays for the retained and internal nodes. nodes = all nodes of the model node_sets = node sets containing the nodes that are to be retained\n\n\n\n"
 },
 
