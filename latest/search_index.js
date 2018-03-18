@@ -89,6 +89,14 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "api.html#ModelReduction.craig_bampton-NTuple{6,Any}",
+    "page": "API",
+    "title": "ModelReduction.craig_bampton",
+    "category": "method",
+    "text": "craig_bampton(K, M, c, r, l, n)\n\nReduce the stiffness, damping and mass matrices with the Craig-Bampton method. K = original stiffness matrix, M = original mass matrix, c = damping ratio, r = retained DOF:s, l = internal DOF:s, n = the number of modes to keep.\n\n\n\n"
+},
+
+{
     "location": "api.html#ModelReduction.global_mass-Tuple{Any,Any}",
     "page": "API",
     "title": "ModelReduction.global_mass",
