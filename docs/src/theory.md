@@ -172,7 +172,7 @@ By simplifying the equation of motion (1) becomes
 
 ```math
 \begin{multline}
-\begin{bmatrix}\boldsymbol{M}_{\mathrm{RR}}+\boldsymbol{X}_{\mathrm{R}}^{\mathrm{T}}\boldsymbol{M}_{\mathrm{LR}}+\boldsymbol{X}_{\mathrm{R}}^{\mathrm{T}}\boldsymbol{M}_{\mathrm{LL}}\boldsymbol{X}_{\mathrm{R}} & \boldsymbol{M}_{\mathrm{\mathrm{R}L}}\boldsymbol{X}_{\mathrm{L}}+\boldsymbol{X}_{\mathrm{R}}^{\mathrm{T}}\boldsymbol{M}_{\mathrm{LL}}\boldsymbol{X}_{\mathrm{L}}\\
+\begin{bmatrix}\boldsymbol{M}_{\mathrm{RR}}+\mathbf{M}_{\mathbf{RL}}\mathbf{X}_{\mathbf{R}}+\boldsymbol{X}_{\mathrm{R}}^{\mathrm{T}}\boldsymbol{M}_{\mathrm{LR}}+\boldsymbol{X}_{\mathrm{R}}^{\mathrm{T}}\boldsymbol{M}_{\mathrm{LL}}\boldsymbol{X}_{\mathrm{R}} & \boldsymbol{M}_{\mathrm{\mathrm{R}L}}\boldsymbol{X}_{\mathrm{L}}+\boldsymbol{X}_{\mathrm{R}}^{\mathrm{T}}\boldsymbol{M}_{\mathrm{LL}}\boldsymbol{X}_{\mathrm{L}}\\
 \boldsymbol{X}_{\mathrm{L}}^{\mathrm{T}}\boldsymbol{M}_{\mathrm{LR}}+\boldsymbol{X}_{\mathrm{L}}^{\mathrm{T}}\boldsymbol{M}_{\mathrm{LL}}\boldsymbol{X}_{\mathrm{R}} & \boldsymbol{I}
 \end{bmatrix}\begin{bmatrix}\ddot{\boldsymbol{u}}_{\mathrm{R}}\\
 \ddot{\boldsymbol{q}}_{\mathrm{m}}
