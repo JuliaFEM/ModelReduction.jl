@@ -18,7 +18,6 @@ function craig_bampton(K, M, r, l, n)
         w2 = eigvals(Kll,Mll)
         X1 = eigvecs(Kll,Mll)
     end
-    w2 = eigvals(Kll,Mll); X1 = eigvecs(Kll,Mll)
     X = X1[:,1:n]; V = X1'*Kll*X1; Z = 10e-6
     Kmm = X'*Kll*X; b = -X*inv(Kmm)*X'*Klr
     B = -X1*inv(V)*X1'*Klr; Kbb = Krr + Krl*B
@@ -49,8 +48,6 @@ function craig_bampton(K, M, c, r, l, n)
         w2 = eigvals(Kll,Mll)
         X1 = eigvecs(Kll,Mll)
     end
-    w2 = eigvals(Kll,Mll)
-    X1 = eigvecs(Kll,Mll)
     X = X1[:,1:n]
     V = X1'*Kll*X1; Z = 10e-6
     Kmm = X'*Kll*X
