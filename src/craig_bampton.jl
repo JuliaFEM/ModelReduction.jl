@@ -10,9 +10,14 @@ r = retained DOF:s, l = internal DOF:s, n = the number of modes to keep.
 
 """
 function craig_bampton(K, M, r, l, n)
-    Krr = K[r,r]; Krl = K[r,l]; Klr = K[l,r]; Kll = K[l,l]
-    Mrr = M[r,r]; Mrl = M[r,l]; Mlr = M[l,r]; Mll = M[l,l]
-    println("Matrix division completed.")
+    Krr = K[r,r]; println("Krr completed.")
+    Krl = K[r,l]; println("Krl completed.")
+    Klr = K[l,r]; println("Klr completed.")
+    Kll = K[l,l]; println("Kll completed.")
+    Mrr = M[r,r]; println("Mrr completed.")
+    Mrl = M[r,l]; println("Mrl completed.")
+    Mlr = M[l,r]; println("Mlr completed.")
+    Mll = M[l,l]; println("Mll completed.")
     if issparse(K) && issparse(M)
         w2, X1 = eigs(Kll, Mll)
     else
