@@ -10,4 +10,5 @@ using Base.Test
     include("test_guyan_reduction.jl")
     include("test_craig_bampton.jl")
     include("test_sort_nodes.jl")
+    include("test_block_multiply.jl")
 end
