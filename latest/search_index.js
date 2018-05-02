@@ -81,6 +81,14 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "api.html#ModelReduction.block_multiply-Tuple{Any,Any,Any}",
+    "page": "API",
+    "title": "ModelReduction.block_multiply",
+    "category": "method",
+    "text": "block_multiply(X, R, A)\n\nPerform matrix multiplication block-wise: B = XRX\'*A\n\n\n\n"
+},
+
+{
     "location": "api.html#ModelReduction.craig_bampton-NTuple{5,Any}",
     "page": "API",
     "title": "ModelReduction.craig_bampton",
