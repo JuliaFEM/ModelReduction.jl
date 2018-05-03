@@ -18,7 +18,8 @@ function craig_bampton(K, M, r, l, n)
     Mrr = M[r,r]; Mrl = M[r,l]
     Mlr = M[l,r]; Mll = M[l,l]
     if issparse(K) && issparse(M)
-        kll = get_nonzero_rows(Kll); klr = get_nonzero_rows(Klr)
+        kll = get_nonzero_rows(Kll); println("Kll nonzero rows = ", kll)
+        klr = get_nonzero_rows(Klr)
         krl = get_nonzero_rows(Krl); krr = get_nonzero_rows(Krr)
         mll = get_nonzero_rows(Mll); mlr = get_nonzero_rows(Mlr)
         mrl = get_nonzero_rows(Mrl); mrr = get_nonzero_rows(Mrr)
