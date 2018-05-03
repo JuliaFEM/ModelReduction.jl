@@ -17,28 +17,20 @@ function craig_bampton(K, M, r, l, n)
     Klr = K[l,r]; Kll = K[l,l]
     Mrr = M[r,r]; Mrl = M[r,l]
     Mlr = M[l,r]; Mll = M[l,l]
+    w2 = zeros(n,n)
+    X = zeros(size(Kll)[1], n)
     if issparse(K) && issparse(M)
-        kll = get_nonzero_rows(Kll); println("Kll nonzero rows = ", kll)
-        klr = get_nonzero_rows(Klr); println("Klr nonzero rows = ", klr)
-        krl = get_nonzero_rows(Krl); println("Krl nonzero rows = ", krl)
-        krr = get_nonzero_rows(Krr); println("Krr nonzero rows = ", krr)
-        mll = get_nonzero_rows(Mll); println("Mll nonzero rows = ", mll)
-        mlr = get_nonzero_rows(Mlr); println("Mlr nonzero rows = ", mlr)
-        mrl = get_nonzero_rows(Mrl); println("Mrl nonzero rows = ", mrl)
-        mrr = get_nonzero_rows(Mrr); println("Mrr nonzero rows = ", mrr)
-        Kll = Kll[kll,kll]; Klr = Klr[klr,klr]
-        Krl = Krl[krl,krl]; Krr = Krr[krr,krr]
-        Mll = Mll[mll,mll]; Mlr = Mlr[mlr,mlr]
-        Mrl = Mrl[mrl,mrl]; Mrr = Mrr[mrr,mrr]
-        w2, X1 = eigs(Kll, Mll; nev=length(Kll), which=:SM)
+        nz = get_nonzero_rows(Kll)
+        w2[nz], X[nz,nz] = eigs(Kll[nz,nz], Mll[nz,nz]; nev=n, which=:SM)
     else
         w2 = eigvals(Kll,Mll)
         X1 = eigvecs(Kll,Mll)
+        X = X1[:,1:n]
     end
-    X = X1[:,1:n]; V = X1'*Kll*X1; Z = 10e-6
+    V = X'*Kll*X; Z = 10e-6
     Kmm = X'*Kll*X
     b = matrixchainmultiply(-X, inv(Kmm), X', Klr)
-    B = matrixchainmultiply(-X1, inv(V), X1', Klr)
+    B = matrixchainmultiply(-X, inv(V), X', Klr)
     Kbb = Krr + Krl*B
     Kbm = (Krl + b'*Kll)*X; Kmb = X'*(Klr + Kll*b)
     Mbb = Mrr + Mrl*B + B'*Mlr + B'*Mll*B; Mmm = X'*Mll*X
