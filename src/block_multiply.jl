@@ -12,12 +12,16 @@ function block_multiply(X, R, A; n=3)
     spans = collect(T[i]+1:T[i+1] for i=1:n)
     B = similar(A)
     fill!(B, 0.0)
+    Xt = transpose(X)
     local i, j
     for i=1:n
         for j=1:n
             a = spans[i]
             b = spans[j]
-            B[a,:] += X[a,:]*R*transpose(X[b,:])*A[b,:]
+            Xi = X[a,:]
+            Xit = Xt[:,b]
+            Ai = A[b,:]
+            B[a,:] += Xi*R*(Xit*Ai)
         end
     end
     return B
