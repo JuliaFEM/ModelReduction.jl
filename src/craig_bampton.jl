@@ -2,6 +2,7 @@
 # License is MIT: see https://github.com/JuliaFEM/ModelReduction.jl/blob/master/LICENSE
 
 using MatrixChainMultiply
+using FEMBase
 
 """
     craig_bampton(K, M, r, l, n)
@@ -17,7 +18,15 @@ function craig_bampton(K, M, r, l, n)
     Mrr = M[r,r]; Mrl = M[r,l]
     Mlr = M[l,r]; Mll = M[l,l]
     if issparse(K) && issparse(M)
-        w2, X1 = eigs(Kll, Mll)
+        kll = get_nonzero_rows(Kll); klr = get_nonzero_rows(Klr)
+        krl = get_nonzero_rows(Krl); krr = get_nonzero_rows(Krr)
+        mll = get_nonzero_rows(Mll); mlr = get_nonzero_rows(Mlr)
+        mrl = get_nonzero_rows(Mrl); mrr = get_nonzero_rows(Mrr)
+        Kll = Kll[kll,kll]; Klr = Klr[klr,klr]
+        Krl = Krl[krl,krl]; Krr = Krr[krr,krr]
+        Mll = Mll[mll,mll]; Mlr = Mlr[mlr,mlr]
+        Mrl = Mrl[mrl,mrl]; Mrr = Mrr[mrr,mrr]
+        w2, X1 = eigs(Kll, Mll; nev=length(Kll), which=:SM)
     else
         w2 = eigvals(Kll,Mll)
         X1 = eigvecs(Kll,Mll)
