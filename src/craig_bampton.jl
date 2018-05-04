@@ -17,18 +17,21 @@ function craig_bampton(K, M, r, l, n)
     Klr = K[l,r]; Kll = K[l,l]
     Mrr = M[r,r]; Mrl = M[r,l]
     Mlr = M[l,r]; Mll = M[l,l]
-    w2 = zeros(n,n)
-    X = zeros(size(Kll)[1], n)
+
+    #w2 = zeros(n,n)
+    X = zeros(size(Kll,1), n)
     if issparse(K) && issparse(M)
+        SparseArrays.dropzeros!(Kll)
         nz = get_nonzero_rows(Kll)
-        w2[nz], X[nz,nz] = eigs(Kll[nz,nz], Mll[nz,nz]; nev=n, which=:SM)
+        println("length of nz = ", length(nz))
+        w2, X[nz,:] = eigs(Kll[nz,nz], Mll[nz,nz]; nev=n, which=:SM)
     else
         w2 = eigvals(Kll,Mll)
         X1 = eigvecs(Kll,Mll)
         X = X1[:,1:n]
     end
-    V = X'*Kll*X; Z = 10e-6
-    Kmm = X'*Kll*X
+    V = X'*Kll*X
+    Kmm = X'*Kll*X; Z = 10e-15
     b = matrixchainmultiply(-X, inv(Kmm), X', Klr)
     B = matrixchainmultiply(-X, inv(V), X', Klr)
     Kbb = Krr + Krl*B
