@@ -17,14 +17,13 @@ function craig_bampton(K, M, r, l, n)
     Klr = K[l,r]; Kll = K[l,l]
     Mrr = M[r,r]; Mrl = M[r,l]
     Mlr = M[l,r]; Mll = M[l,l]
-
-    #w2 = zeros(n,n)
     X = zeros(size(Kll,1), n)
     if issparse(K) && issparse(M)
         SparseArrays.dropzeros!(Kll)
         nz = get_nonzero_rows(Kll)
         println("length of nz = ", length(nz))
-        w2, X[nz,:] = eigs(Kll[nz,nz], Mll[nz,nz]; nev=n, which=:SM)
+        @time w2, X[nz,:] = eigs(Kll[nz,nz], Mll[nz,nz]; nev=n, which=:SM)
+        println("Eigenvectors of Kll calculated")
     else
         w2 = eigvals(Kll,Mll)
         X1 = eigvecs(Kll,Mll)
@@ -32,12 +31,11 @@ function craig_bampton(K, M, r, l, n)
     end
     V = X'*Kll*X
     Kmm = X'*Kll*X; Z = 10e-15
-    b = matrixchainmultiply(-X, inv(Kmm), X', Klr)
-    B = matrixchainmultiply(-X, inv(V), X', Klr)
+    @time B = -Kll \ Klr
     Kbb = Krr + Krl*B
-    Kbm = (Krl + b'*Kll)*X; Kmb = X'*(Klr + Kll*b)
+    Kbm = (Krl + B'*Kll)*X; Kmb = X'*(Klr + Kll*B)
     Mbb = Mrr + Mrl*B + B'*Mlr + B'*Mll*B; Mmm = X'*Mll*X
-    Mbm = (Mrl + b'*Mll)*X; Mmb = X'*(Mlr + Mll*b)
+    Mbm = (Mrl + B'*Mll)*X; Mmb = X'*(Mlr + Mll*B)
     Kbm[abs.(Kbm) .< Z] = 0.0; Kmb[abs.(Kmb) .< Z] = 0.0
     Mred = [Mbb Mbm; Mmb Mmm]; Kred = [Kbb Kbm; Kmb Kmm]
     return Mred, Kred
