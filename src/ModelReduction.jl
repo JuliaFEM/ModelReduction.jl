@@ -8,4 +8,6 @@ include("global_mass.jl")
 include("guyan_reduction.jl")
 include("craig_bampton.jl")
 include("sort_nodes.jl")
+include("model_reduction_craig_bampton.jl")
+export CraigBampton
 end
