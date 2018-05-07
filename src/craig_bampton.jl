@@ -26,8 +26,6 @@ function craig_bampton(K, M, r, l, n)
         println("Eigenvectors of Kll calculated")
         kll = (Kll + Kll')/2
         println("kll is now symmetric")
-        KLL = factorize(kll[nz,nz])
-        println("Factorization of Kll completed")
     else
         w2 = eigvals(Kll,Mll)
         w = w2[1:n]
