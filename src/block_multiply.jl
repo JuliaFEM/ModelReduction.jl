@@ -1,6 +1,8 @@
 # This file is a part of JuliaFEM.
 # License is MIT: see https://github.com/JuliaFEM/ModelReduction.jl/blob/master/LICENSE
 
+using MatrixChainMultiply
+
 """
     block_multiply(X, R, A)
 
@@ -21,7 +23,7 @@ function block_multiply(X, R, A; n=3)
             Xi = X[a,:]
             Xit = Xt[:,b]
             Ai = A[b,:]
-            B[a,:] += Xi*R*(Xit*Ai)
+            B[a,:] += matrixchainmultiply(Xi,R,Xit,Ai)
         end
     end
     return B

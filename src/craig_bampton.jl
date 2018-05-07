@@ -22,22 +22,36 @@ function craig_bampton(K, M, r, l, n)
         SparseArrays.dropzeros!(Kll)
         nz = get_nonzero_rows(Kll)
         println("length of nz = ", length(nz))
-        @time w2, X[nz,:] = eigs(Kll[nz,nz], Mll[nz,nz]; nev=n, which=:SM)
+        @time w, X[nz,:] = eigs(Kll[nz,nz], Mll[nz,nz]; nev=n, which=:SM)
         println("Eigenvectors of Kll calculated")
+        kll = (Kll + Kll')/2
+        println("kll is now symmetric")
+        KLL = factorize(kll[nz,nz])
+        println("Factorization of Kll completed")
     else
         w2 = eigvals(Kll,Mll)
+        w = w2[1:n]
         X1 = eigvecs(Kll,Mll)
         X = X1[:,1:n]
     end
-    V = X'*Kll*X
-    Kmm = X'*Kll*X; Z = 10e-15
-    @time B = -Kll \ Klr
-    Kbb = Krr + Krl*B
-    Kbm = (Krl + B'*Kll)*X; Kmb = X'*(Klr + Kll*B)
-    Mbb = Mrr + Mrl*B + B'*Mlr + B'*Mll*B; Mmm = X'*Mll*X
-    Mbm = (Mrl + B'*Mll)*X; Mmb = X'*(Mlr + Mll*B)
-    Kbm[abs.(Kbm) .< Z] = 0.0; Kmb[abs.(Kmb) .< Z] = 0.0
-    Mred = [Mbb Mbm; Mmb Mmm]; Kred = [Kbb Kbm; Kmb Kmm]
+    Kmm = X'*Kll*X
+    P = Krl*X
+    Q = Mrl*X
+    invw = diagm(inv.(w))
+    Kbb = Krr - P*invw*P'
+    Kmb = zeros(n, length(r))
+    Kbm = zeros(length(r), n)
+    MU = X'*Mll*X
+    Mbb = Mrr - Q*invw*P' - P*invw*Q' + P*invw*MU*invw*P'
+    Mmb = Q' - MU*invw*P'
+    Mbm = Q - P*invw*MU
+    Mmm = MU
+    # Final system:
+    Mred = [Mbb Mbm; Mmb Mmm]
+    Kred = [Kbb Kbm; Kmb Kmm]
+    Z = 10e-10
+    Mred[abs.(Mred) .< Z] = 0.0
+    Kred[abs.(Kred) .< Z] = 0.0
     return Mred, Kred
 end
 
