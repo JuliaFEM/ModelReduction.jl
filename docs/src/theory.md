@@ -27,15 +27,22 @@ Equation (1) becomes:
 
 ```math
 \begin{equation}
-\begin{bmatrix}\boldsymbol{M}_{\mathrm{RR}} & \boldsymbol{M}_{\mathrm{\mathrm{R}L}}\\
-\boldsymbol{M}_{\mathrm{RR}} & \boldsymbol{M}_{\mathrm{LL}}
-\end{bmatrix}\begin{bmatrix}\ddot{\boldsymbol{u}}_{\mathrm{R}}\\
+\left[\begin{array}{cc}
+\boldsymbol{M}_{\mathrm{R}\mathrm{R}} & \boldsymbol{M}_{\mathrm{R}\mathrm{L}}\\
+\boldsymbol{M}_{\mathrm{L}\mathrm{R}} & \boldsymbol{M}_{\mathrm{L}\mathrm{L}}
+\end{array}\right]\left[\begin{array}{c}
+\ddot{\boldsymbol{u}}_{\mathrm{R}}\\
 \ddot{\boldsymbol{u}}_{\mathrm{L}}
-\end{bmatrix}+\begin{bmatrix}\boldsymbol{K}_{\mathrm{RR}} & \boldsymbol{K}_{\mathrm{RL}}\\
-\boldsymbol{K}_{\mathrm{LR}} & \boldsymbol{K}_{\mathrm{LL}}
-\end{bmatrix}\begin{bmatrix}\boldsymbol{u}_{\mathrm{R}}\\
+\end{array}\right]+\left[\begin{array}{cc}
+\boldsymbol{K}_{\mathrm{R}\mathrm{R}} & \boldsymbol{K}_{\mathrm{R}\mathrm{L}}\\
+\boldsymbol{K}_{\mathrm{L}\mathrm{R}} & \boldsymbol{K}_{\mathrm{L}\mathrm{L}}
+\end{array}\right]\left[\begin{array}{c}
+\boldsymbol{u}_{\mathrm{R}}\\
 \boldsymbol{u}_{\mathrm{L}}
-\end{bmatrix}=\boldsymbol{f}
+\end{array}\right]=\left[\begin{array}{c}
+\boldsymbol{f}_{\mathrm{R}}\\
+\boldsymbol{f}_{\mathrm{L}}
+\end{array}\right]
 \end{equation}
 ```
 
