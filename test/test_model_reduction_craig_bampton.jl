@@ -17,7 +17,7 @@ info("element sets = ", collect(keys(mesh.element_sets)))
 info("surface sets = ", collect(keys(mesh.surface_sets)))
 info("node sets = ", collect(keys(mesh.node_sets)))
 
-#' create two field problems with different material properties
+# create two field problems with different material properties
 
 bracket = Problem(Elasticity, "LDU_Bracket", 3)
 bracket.elements = create_elements(mesh, "LDUBracket")
@@ -53,10 +53,10 @@ end
 
 # call helper function to create tie contacts
 tie1 = create_interface(mesh,
-	"LDUBracketToAdapterplate1",
+    "LDUBracketToAdapterplate1",
     "Adapterplate1ToLDUBracket")
 tie2 = create_interface(mesh,
-	"LDUBracketToAdapterplate2",
+    "LDUBracketToAdapterplate2",
     "Adapterplate2ToLDUBracket")
 
 # solver = Solver(Modal, bracket, plate, fixed, tie1, tie2)
