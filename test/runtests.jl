@@ -8,3 +8,7 @@ using Base.Test
     include("test_guyan_reduction.jl")
     include("test_craig_bampton.jl")
 end
+
+@testset "test model reduction using Craig-Bampton method" begin
+    include("test_model_reduction_craig_bampton.jl")
+end
