@@ -3,11 +3,6 @@
 
 using FEMBase
 
-# TODO: abstract elimination of boundary conditions must be introduced
-using JuliaFEM: eliminate_boundary_conditions!,
-                get_field_assembly,
-                get_boundary_problems
-
 type CraigBampton <: AbstractAnalysis
     r_nodes :: Vector{Int64}
     l_nodes :: Vector{Int64}
@@ -29,6 +24,18 @@ function CraigBampton()
         3, 10, 0.0)
 end
 
+function get_matrices(cb, time)
+    assemble!(cb, time; with_mass_matrix=true)
+    M_red, K_red, Kg, f = get_field_assembly(cb)
+    for problem in get_problems(cb)
+        is_boundary_problem(problem) || continue
+        eliminate_boundary_conditions!(problem, K_red, M_red)
+    end
+    SparseArrays.dropzeros!(K_red)
+    SparseArrays.dropzeros!(M_red)
+    return K_red, M_red
+end
+
 function FEMBase.run!(cb::Analysis{CraigBampton})
     time = cb.properties.time
     dim = cb.properties.dim
@@ -42,15 +49,7 @@ function FEMBase.run!(cb::Analysis{CraigBampton})
     info("number of other nodes = ", length(l_nodes))
     info("number of other dofs = ", length(l_dofs))
 
-    # Construct global matrices M and K (manually eliminate tie constraints)
-    assemble!(cb, time; with_mass_matrix=true)
-    M_red, K_red, Kg, f = get_field_assembly(cb)
-    dim1 = size(K_red, 1)
-    for boundary_problem in get_boundary_problems(cb)
-        eliminate_boundary_conditions!(K_red, M_red, boundary_problem, dim1)
-    end
-    SparseArrays.dropzeros!(K_red)
-    SparseArrays.dropzeros!(M_red)
+    K_red, M_red = get_matrices(cb, time)
 
     K_LL = K_red[l_dofs, l_dofs]
     K_LL = 1/2*(K_LL + K_LL')
