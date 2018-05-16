@@ -5,10 +5,6 @@ using ModelReduction
 using Base.Test
 
 @testset "ModelReduction.jl" begin
-    include("test_global_stiffness.jl")
-    include("test_global_mass.jl")
     include("test_guyan_reduction.jl")
     include("test_craig_bampton.jl")
-    include("test_sort_nodes.jl")
-    include("test_block_multiply.jl")
 end
