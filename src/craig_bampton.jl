@@ -1,7 +1,6 @@
 # This file is a part of JuliaFEM.
 # License is MIT: see https://github.com/JuliaFEM/ModelReduction.jl/blob/master/LICENSE
 
-using MatrixChainMultiply
 using FEMBase
 
 """
@@ -21,11 +20,8 @@ function craig_bampton(K, M, r, l, n)
     if issparse(K) && issparse(M)
         SparseArrays.dropzeros!(Kll)
         nz = get_nonzero_rows(Kll)
-        println("length of nz = ", length(nz))
-        @time w, X[nz,:] = eigs(Kll[nz,nz], Mll[nz,nz]; nev=n, which=:SM)
-        println("Eigenvectors of Kll calculated")
+        w, X[nz,:] = eigs(Kll[nz,nz], Mll[nz,nz]; nev=n, which=:SM)
         kll = (Kll + Kll')/2
-        println("kll is now symmetric")
     else
         w2 = eigvals(Kll,Mll)
         w = w2[1:n]
