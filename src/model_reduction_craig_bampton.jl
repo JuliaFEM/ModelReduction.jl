@@ -3,7 +3,7 @@
 
 using FEMBase
 
-type CraigBampton <: AbstractAnalysis
+mutable struct CraigBampton <: AbstractAnalysis
     r_nodes :: Vector{Int64}
     l_nodes :: Vector{Int64}
     K :: SparseMatrixCSC{Float64}
