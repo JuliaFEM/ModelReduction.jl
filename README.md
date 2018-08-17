@@ -57,6 +57,23 @@ julia> Mred, Kred = ModelReduction.craig_bampton(K, M, r, l, n)
 
 ```
 
+## Citing
+
+If you like using our package, please consider citing our [article](https://rakenteidenmekaniikka.journal.fi/article/view/69026/35912):
+```
+@article{rapo2018implementing,
+ title={Implementing model reduction to the JuliaFEM platform},
+ volume={51},
+ url={https://rakenteidenmekaniikka.journal.fi/article/view/69026},
+ doi={10.23998/rm.69026},
+ number={1},
+ journal={Rakenteiden Mekaniikka},
+ author={Rapo, Marja and Aho, Jukka and Koivurova, Hannu and Frondelius, Tero},
+ year={2018},
+ pages={36-54}
+}
+```
+
 
 ## Contributing
 
